@@ -1,0 +1,25 @@
+@import "bootstrap/scss/bootstrap";
+
+.w-60 {
+    width: 60%;
+}
+
+.h-auto {
+    height: auto !important;
+}
+
+.payload {
+    min-height: 200px !important;
+}
+
+.response {
+    min-height: 200px !important;
+}
+
+.success {
+    color: #108ee9;
+}
+
+.error {
+    color: red;
+}
