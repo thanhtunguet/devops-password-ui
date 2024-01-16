@@ -1,8 +1,16 @@
+FROM node:18-alpine as build
+WORKDIR /src
+
+COPY package.json yarn.lock ./
+RUN yarn install --development
+
+COPY . .
+RUN yarn build-web
+
 # Using nginx to serve front-end
-FROM nginx:alpine
+FROM nginx:alpine as final
 
 EXPOSE 8080
-
 WORKDIR /usr/share/nginx/html/
 
 USER root
@@ -10,4 +18,4 @@ RUN chmod -R g+w /var/cache/
 RUN chmod -R g+w /var/run/
 
 # Copy built artifacts
-COPY ./dist/ ./
+COPY --from=build /src/dist/ ./
